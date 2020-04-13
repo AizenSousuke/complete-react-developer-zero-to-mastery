@@ -82,20 +82,20 @@ class App extends Component {
           </a>
           <h3>Monster Size: <i><b>{this.state.monsters.length}</b></i></h3>
           <button onClick={() => this.addMonster("Monster " + (Math.floor(Math.random() * 100)).toString())} style={{padding: "15px", borderRadius: "15px"}}>Add Monster</button>
-          <p>
+          <div>
             {
               this.state.monsters.map(monsters =>
-                <>
-                  <p key={monsters.id}>
+                <div key={monsters.id}>
+                  <p>
                     {
                       monsters.name
                     }
                   </p>
                   <button onClick={() => this.deleteMonster(monsters.id)} style={{padding: "15px", borderRadius: "15px"}}>Delete Monster</button>
-                </>
+                </div>
               )
             }
-          </p>
+          </div>
         </header>
       </div>
     );
