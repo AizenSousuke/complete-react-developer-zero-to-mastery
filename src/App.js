@@ -11,29 +11,15 @@ class App extends Component {
       string: 'Hello Nik',
       newstring: 'Sup',
       oldstring: 'old',
-      monsters: [
-        {
-          'name': 'monster1',
-          'id': '1'
-        },
-        {
-          'name': 'monster2',
-          'id': '2'
-        },
-        {
-          'name': 'monster3',
-          'id': '3'
-        },
-        {
-          'name': 'monster4',
-          'id': '4'
-        },
-        {
-          'name': 'monster5',
-          'id': '5'
-        }
-      ]
+      monsters: []
     };
+  }
+
+  componentDidMount() {
+    // Things to init
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => response.json())
+    .then(users => this.setState({monsters: users}));
   }
 
   checkString() {
