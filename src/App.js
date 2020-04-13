@@ -10,8 +10,30 @@ class App extends Component {
     this.state = {
       string: 'Hello Nik',
       newstring: 'Sup',
-      oldstring: 'old'
-    }
+      oldstring: 'old',
+      monsters: [
+        {
+          'name': 'monster1',
+          'id': '1'
+        },
+        {
+          'name': 'monster2',
+          'id': '2'
+        },
+        {
+          'name': 'monster3',
+          'id': '3'
+        },
+        {
+          'name': 'monster4',
+          'id': '4'
+        },
+        {
+          'name': 'monster5',
+          'id': '5'
+        }
+      ]
+    };
   }
 
   checkString() {
@@ -23,7 +45,20 @@ class App extends Component {
     else
     {
       this.setState({string : this.state.oldstring});
-    }
+    };
+  }
+
+  addMonster(name) {
+    const newMonsters = [...this.state.monsters, {'name': name, 'id': (this.state.monsters.length+1).toString()}];
+    this.setState({monsters: newMonsters});
+  }
+
+  deleteMonster(id) {
+    const newMonsters = [...this.state.monsters];
+    const newList = newMonsters.filter((monster) => 
+      monster.id !== id
+    );
+    this.setState({monsters: newList});
   }
 
   render() {
@@ -45,6 +80,22 @@ class App extends Component {
           >
             Learn React Now
           </a>
+          <h3>Monster Size: <i><b>{this.state.monsters.length}</b></i></h3>
+          <button onClick={() => this.addMonster("Monster " + (Math.floor(Math.random() * 100)).toString())} style={{padding: "15px", borderRadius: "15px"}}>Add Monster</button>
+          <p>
+            {
+              this.state.monsters.map(monsters =>
+                <>
+                  <p key={monsters.id}>
+                    {
+                      monsters.name
+                    }
+                  </p>
+                  <button onClick={() => this.deleteMonster(monsters.id)} style={{padding: "15px", borderRadius: "15px"}}>Delete Monster</button>
+                </>
+              )
+            }
+          </p>
         </header>
       </div>
     );
