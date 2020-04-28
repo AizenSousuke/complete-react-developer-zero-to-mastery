@@ -59,24 +59,7 @@ class App extends Component {
 					<button onClick={() => this.checkString()}>
 						Click me to change name
 					</button>
-					<CardList>
-            {this.state.monsters.map((monsters) => (
-              <div key={monsters.id}>
-                <p>{monsters.name}</p>
-                <button
-                  onClick={() =>
-                    this.deleteMonster(monsters.id)
-                  }
-                  style={{
-                    padding: "15px",
-                    borderRadius: "15px",
-                  }}
-                >
-                  Delete Monster
-                </button>
-              </div>
-            ))}
-          </CardList>
+					<CardList monsters={this.state.monsters} />
 					<h3>
 						Monster Size:{" "}
 						<i>
