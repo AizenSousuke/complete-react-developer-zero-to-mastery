@@ -12,10 +12,6 @@ class App extends Component {
 			monsters: [],
 			searchField: "",
 		};
-
-		// Make sure that "this" is set to the "this" in the component.
-		// Bind new class method to this class
-		this.handleChange = this.handleChange.bind(this);
 	}
 
 	componentDidMount() {
@@ -39,9 +35,9 @@ class App extends Component {
 		this.setState({ monsters: newList });
 	}
 
-	handleChange(e) {
+	handleChange = (e) => {
 		this.setState({ searchField: e.target.value });
-	}
+	};
 
 	render() {
 		// Pull the two variables out of this.state and store it into the two variables on the left as a constant
@@ -55,12 +51,7 @@ class App extends Component {
 		return (
 			<div className="App">
 				<header className="App-header">
-					Search:
-					<SearchBox
-						placeholder="Search monsters here"
-						handleChange={this.handleChange}
-					/>
-					<CardList monsters={filteredMonsters} />
+					<h1>Monster Rolodex</h1>
 					<h3>
 						Monster Size:{" "}
 						<i>
@@ -78,6 +69,11 @@ class App extends Component {
 					>
 						Add Monster
 					</button>
+					<SearchBox
+						placeholder="Search monsters here"
+						handleChange={this.handleChange}
+					/>
+					<CardList monsters={filteredMonsters} />
 				</header>
 			</div>
 		);
