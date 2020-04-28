@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import "./components/search/search.styles.css"
 import { CardList } from "./components/card-list/card-list.component";
 
 class App extends Component {
@@ -48,6 +49,13 @@ class App extends Component {
 	}
 
 	render() {
+
+		// Pull the two variables out of this.state and store it into the two variables on the left as a constant
+		const { monsters, searchField } = this.state;
+		const filteredMonsters = monsters.filter(monster => {
+			return monster.name.toLowerCase().includes(searchField.toLowerCase());
+		});
+
 		return (
 			<div className="App">
 				<header className="App-header">
@@ -63,7 +71,8 @@ class App extends Component {
 					Search:
 					<input
 						type="search"
-						placeholder="search for a monster..."
+						className="search"
+						placeholder="Search for a monster..."
 						onChange={(e) => {
 							this.setState({ searchField: e.target.value }, () => {
 								console.log(this.state);
@@ -71,7 +80,7 @@ class App extends Component {
 						}
 						}
 					/>
-					<CardList monsters={this.state.monsters} />
+					<CardList monsters={filteredMonsters} />
 					<h3>
 						Monster Size:{" "}
 						<i>
