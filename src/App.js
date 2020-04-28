@@ -13,6 +13,7 @@ class App extends Component {
 			newstring: "Sup",
 			oldstring: "old",
 			monsters: [],
+			searchField: "",
 		};
 	}
 
@@ -59,6 +60,17 @@ class App extends Component {
 					<button onClick={() => this.checkString()}>
 						Click me to change name
 					</button>
+					Search:
+					<input
+						type="search"
+						placeholder="search for a monster..."
+						onChange={(e) => {
+							this.setState({ searchField: e.target.value }, () => {
+								console.log(this.state);
+							});
+						}
+						}
+					/>
 					<CardList monsters={this.state.monsters} />
 					<h3>
 						Monster Size:{" "}
